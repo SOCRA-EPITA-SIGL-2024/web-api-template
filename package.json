@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.mjs"
+    "start": "nodemon src/server.mjs",
+    "serve": "node src/server.mjs"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +14,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
