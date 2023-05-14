@@ -104,7 +104,7 @@ in France.
 To consume this work-in-progress product service:
 
 ```sh
-curl -XPOST -H "Content-Type: application/json" -d '{"position": {"lat": 45.7785324, "lng": 3.0850938 }}' http://localhost:3000/v1/product/vegetable\?radius=15
+curl -XPOST -H "Content-Type: application/json" -d '{"position": {"lat": 45.7785324, "lng": 3.0850938 }}' http://localhost:3000/v1/product\?radius=15
 ```
 
 > Note: you have to escape the `?` using the `\` char
@@ -113,9 +113,10 @@ This should return (without the pretty formatting):
 
 ```json
 {
+  "inputRadius": 15,
   "inputPosition": {
-    "lat": 45.7785324,
-    "lng": 3.0850938
+    "lat": 48.856614,
+    "lng": 2.3522219
   },
   "gardens": [
     {
@@ -232,4 +233,3 @@ This should return (without the pretty formatting):
   ]
 }
 ```
-

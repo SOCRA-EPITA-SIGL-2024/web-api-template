@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import distance from "./distance.mjs";
 import gardens from "./data/gardens.json" assert { type: "json" };
 
@@ -9,6 +10,9 @@ const EIFFEL_TOWER_POSITION = { lat: 48.8583145, lng: 2.292334 };
 
 // configure your endpoints to expect JSON format for payloads
 app.use(express.json());
+
+// Makes sure CORS are implemented
+app.use(cors({ origin: "*" }));
 
 // A simple status check route, to be queried to make sure your web API is running
 app.get("/", function (request, response) {
@@ -32,14 +36,15 @@ app.post("/v1/distance", function (request, response) {
 });
 
 // TODO: you have to implement this service!
+//
 // Right now, it only echos what you've called the service with, and
 // adds the two first "potagers" of your JSON gardens data
 // Try it out!:
 // From your terminal, (considering you've run this serivce):
-//  curl -XPOST  -H "Content-Type: application/json" -d '{"position": {"lat": 48.856614,"lng": 2.3522219}}' http://localhost:3000/v1/product/vegetable\?radius=15
-app.post("/v1/product/:categoryId", function (request, response) {
+//  curl -XPOST  -H "Content-Type: application/json" -d '{"position": {"lat": 48.856614,"lng": 2.3522219}}' http://localhost:3000/v1/product\?radius=15
+app.post("/v1/product", function (request, response) {
   const inputPostion = request.body.position;
-  const radius = request.params.radius;
+  const radius = +request.query.radius;
   const firstTwoGarden = [gardens[0], gardens[1]];
   response.send({
     inputRadius: radius,
